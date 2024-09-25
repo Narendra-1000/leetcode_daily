@@ -1,0 +1,55 @@
+# You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise).
+
+# You have to rotate the image in-place, which means you have to modify the input 2D matrix directly. DO NOT allocate another 2D matrix and do the rotation.
+# Example 1:
+
+# Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+# Output: [[7,4,1],[8,5,2],[9,6,3]]
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        n = len(matrix)
+        m = len(matrix[0])
+        print(n,m,"n,m\n")
+        for i in range(n):
+            for j in range(i):
+                # print(i,j,"i,j\n")
+                temp = matrix[i][j]
+                matrix[i][j] = matrix[j][i]
+                matrix[j][i] = temp
+                
+        for i in range(0,n):
+            matrix[i].reverse()
+
+
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        n= len(matrix)
+        for i in range(0,n):
+            for j in range(i):
+                matrix[i][j],matrix[j][i] = matrix[j][i],matrix[i][j]
+
+        for i in range(0,n):
+            matrix[i].reverse()
+
+
+
+# Explanation : 
+# To rotate first transpose the matrix 
+# Loop Structure for Transposing:
+
+# First Solution:
+
+# python
+# Copy code
+# for i in range(n):
+#     for j in range(i):
+# The inner loop runs from 0 to i, meaning that only the upper triangle (excluding the diagonal) of the matrix is processed. This is because when you transpose a matrix, swapping between (i, j) and (j, i) needs to be done only for one half of the matrix, otherwise, you would swap the same elements twice, which cancels the effect.
+# This is the correct loop structure for transposing the matrix efficiently.
+#and then reverse the list
