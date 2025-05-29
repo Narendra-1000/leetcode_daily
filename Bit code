@@ -1,0 +1,29 @@
+
+
+def show_bits(num):
+    print(f"Decimal: {num}")
+    print(f"Binary : {bin(num)[2:].zfill(8)}")  # Display 8-bit binary
+
+def check_bit(num, b):
+    mask = 1 << b
+    print(f"\nChecking bit at position {b}:")
+    print(f"Mask      : {bin(mask)[2:].zfill(8)} (Decimal: {mask})")
+    print(f"num & mask: {bin(num & mask)[2:].zfill(8)}")
+
+    if num & mask:
+        print(f"✅ Bit {b} is ON (1)")
+    else:
+        print(f"❌ Bit {b} is OFF (0)")
+
+# Try it out
+number = int(input("Enter a number: "))
+show_bits(number)
+
+while True:
+    bit_pos = input("\nEnter bit position to check (0-31, or 'q' to quit): ")
+    if bit_pos.lower() == 'q':
+        break
+    if bit_pos.isdigit() and 0 <= int(bit_pos) < 32:
+        check_bit(number, int(bit_pos))
+    else:
+        print("Invalid bit position. Please enter 0–31.")
