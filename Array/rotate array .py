@@ -1,0 +1,63 @@
+def rotate_right(nums, k):
+    n = len(nums)
+    k %= n  # Handle cases where k > n
+
+    def reverse(start, end):
+        while start < end:
+            nums[start], nums[end] = nums[end], nums[start]
+            start += 1
+            end -= 1
+
+    reverse(0, n - 1)       # Reverse entire array
+    reverse(0, k - 1)       # Reverse first k elements
+    reverse(k, n - 1)       # Reverse the rest
+
+"""
+🔁 rotate_right(nums, k)
+Step 1: reverse(0, n-1)
+Input: [1, 2, 3, 4, 5, 6, 7]
+→ Output: [7, 6, 5, 4, 3, 2, 1]
+Step 2: reverse(0, k-1) → reverse(0, 2)
+→ [5, 6, 7, 4, 3, 2, 1]
+Step 3: reverse(k, n-1) → reverse(3, 6)
+→ [5, 6, 7, 1, 2, 3, 4]
+✅ Final Output: [5, 6, 7, 1, 2, 3, 4]
+"""
+
+
+def rotate_left(nums, k):
+    n = len(nums)
+    k %= n  # Handle cases where k > n
+
+    def reverse(start, end):
+        while start < end:
+            nums[start], nums[end] = nums[end], nums[start]
+            start += 1
+            end -= 1
+
+    reverse(0, k - 1)       # Reverse first k elements
+    reverse(k, n - 1)       # Reverse the rest
+    reverse(0, n - 1)       # Reverse entire array
+
+"""
+🔁 rotate_left(nums, k)
+Start: [1, 2, 3, 4, 5, 6, 7]
+Step 1: reverse(0, k-1) → reverse(0, 2)
+→ [3, 2, 1, 4, 5, 6, 7]
+Step 2: reverse(k, n-1) → reverse(3, 6)
+→ [3, 2, 1, 7, 6, 5, 4]
+Step 3: reverse(0, n-1)
+→ [4, 5, 6, 7, 1, 2, 3]
+✅ Final Output: [4, 5, 6, 7, 1, 2, 3]
+"""
+
+if __name__ == "__main__":
+    nums_right = [1, 2, 3, 4, 5, 6, 7]
+    k_right = 3
+    rotate_right(nums_right, k_right)
+    print("Right Rotation:", nums_right)  # Output: [5, 6, 7, 1, 2, 3, 4]
+
+    nums_left = [1, 2, 3, 4, 5, 6, 7]
+    k_left = 3
+    rotate_left(nums_left, k_left)
+    print("Left Rotation:", nums_left)  # Output: [4, 5, 6, 7, 1, 2, 3]
